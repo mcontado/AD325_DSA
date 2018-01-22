@@ -34,8 +34,15 @@ public class SortingAlgorithms {
 		long timeStartedShellSort = System.currentTimeMillis();
 		shellSort(shellSortNumbers);
 		System.out.println("Shell Sort last for: " + (System.currentTimeMillis() - timeStartedShellSort) + " ms"); 
+		
+		// Merge Sort
+		int[] mergeSortNumbers = generateRandomNumbers();
+		long timeStartedMergeSort = System.currentTimeMillis();
+		mergeSort(mergeSortNumbers, 0, mergeSortNumbers.length-1);
+		System.out.println("Merge Sort last for: " + (System.currentTimeMillis() - timeStartedMergeSort) + " ms");
 
 	}
+
 
 	/**
 	 * Generates random numbers from 1 - 100,000
@@ -143,4 +150,91 @@ public class SortingAlgorithms {
 			}
 		}
 	}
+
+	/**
+	 * Merge Sort is a Divide and Conquer algorithm. It divides input array in two halves, 
+	 * calls itself for the two halves and then merges the two sorted halves. 
+	 * The merge() function is used for merging two halves. 
+	 * The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] 
+	 * are sorted and merges the two sorted sub-arrays into one.
+	 * @param arr
+	 * @param left
+	 * @param mid
+	 * @param right
+	 */
+	// Merges two subarrays of arr[].
+    // First subarray is arr[left..mid]
+    // Second subarray is arr[m+1..right]
+    public static void merge(int arr[], int left, int mid, int right)
+    {
+        // Find sizes of two subarrays to be merged
+        int sizeLeft = mid - left + 1;
+        int sizeRight = right - mid;
+ 
+        /* Create temp arrays */
+        int leftSubArray[] = new int [sizeLeft];
+        int rightSubArray[] = new int [sizeRight];
+ 
+        /*Copy data to temp arrays*/
+        for (int i=0; i<sizeLeft; ++i)
+            leftSubArray[i] = arr[left + i];
+        for (int j=0; j<sizeRight; ++j)
+            rightSubArray[j] = arr[mid + 1 + j];
+ 
+ 
+        /* Merge the temp arrays */
+        // Initial indexes of first and second subarrays
+        int i = 0, j = 0;
+ 
+        // Initial index of merged subarry array
+        int k = left;
+        while (i < sizeLeft && j < sizeRight)
+        {
+            if (leftSubArray[i] <= rightSubArray[j])
+            {
+                arr[k] = leftSubArray[i];
+                i++;
+            }
+            else
+            {
+                arr[k] = rightSubArray[j];
+                j++;
+            }
+            k++;
+        }
+ 
+        /* Copy remaining elements of leftSubArray[] if any */
+        while (i < sizeLeft)
+        {
+            arr[k] = leftSubArray[i];
+            i++;
+            k++;
+        }
+ 
+        /* Copy remaining elements of rightSubArray[] if any */
+        while (j < sizeRight)
+        {
+            arr[k] = rightSubArray[j];
+            j++;
+            k++;
+        }
+    }
+ 
+    // Main function that sorts arr[left..right] using
+    // merge()
+    public static void mergeSort(int arr[], int left, int right)
+    {
+        if (left < right)
+        {
+            // Find the middle point
+            int mid = (left+right)/2;
+ 
+            // Sort first and second halves
+            mergeSort(arr, left, mid);
+            mergeSort(arr , mid+1, right);
+ 
+            // Merge the sorted halves
+            merge(arr, left, mid, right);
+        }
+    }
 }
