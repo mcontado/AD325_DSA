@@ -1,5 +1,6 @@
 package assignments;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -16,33 +17,45 @@ public class SortingAlgorithms {
 	private static final int RANGE = 100000;
 
 	public static void main(String[] args) {
-		// Selection Sort
-		int[] selectionSortNumbers = generateRandomNumbers();
-		long timeStartedSelectionSort = System.currentTimeMillis();
-		selectionSort(selectionSortNumbers);
-		System.out.println("Selection Sort last for: " + (System.currentTimeMillis() - timeStartedSelectionSort) + " ms"); 
-
-		// Insertion Sort
-		int[] insertionSortNumbers = generateRandomNumbers();
-		long timeStartedInsertionSort = System.currentTimeMillis();
-		insertionSort(insertionSortNumbers);
-		System.out.println("Insert Sort last for: " + (System.currentTimeMillis() - timeStartedInsertionSort) + " ms"); 
-
-
-		// Shell Sort
-		int[] shellSortNumbers = generateRandomNumbers();
-		long timeStartedShellSort = System.currentTimeMillis();
-		shellSort(shellSortNumbers);
-		System.out.println("Shell Sort last for: " + (System.currentTimeMillis() - timeStartedShellSort) + " ms"); 
+		System.out.println("Sorting 100,000 random numbers...");
 		
-		// Merge Sort
-		int[] mergeSortNumbers = generateRandomNumbers();
-		long timeStartedMergeSort = System.currentTimeMillis();
-		mergeSort(mergeSortNumbers, 0, mergeSortNumbers.length-1);
-		System.out.println("Merge Sort last for: " + (System.currentTimeMillis() - timeStartedMergeSort) + " ms");
-
+		// Selection Sort
+		 int[] selectionSortNumbers = generateRandomNumbers();
+		 long timeStartedSelectionSort = System.currentTimeMillis();
+		 selectionSort(selectionSortNumbers);
+		 System.out.println("Selection Sort last for: " +
+		 (System.currentTimeMillis() - timeStartedSelectionSort) + " ms");
+		
+		 // Insertion Sort
+		 int[] insertionSortNumbers = generateRandomNumbers();
+		 long timeStartedInsertionSort = System.currentTimeMillis();
+		 insertionSort(insertionSortNumbers);
+		 System.out.println("Insert Sort last for: " +
+		 (System.currentTimeMillis() - timeStartedInsertionSort) + " ms");
+		
+		
+		 // Shell Sort
+		 int[] shellSortNumbers = generateRandomNumbers();
+		 long timeStartedShellSort = System.currentTimeMillis();
+		 shellSort(shellSortNumbers);
+		 System.out.println("Shell Sort last for: " +
+		 (System.currentTimeMillis() - timeStartedShellSort) + " ms");
+		
+		 // Merge Sort
+		 int[] mergeSortNumbers = generateRandomNumbers();
+		 long timeStartedMergeSort = System.currentTimeMillis();
+		 mergeSort(mergeSortNumbers);
+		 System.out.println("Merge Sort last for: " +
+		 (System.currentTimeMillis() - timeStartedMergeSort) + " ms");
+		 
+		 // Quick Sort
+		 int[] quickSortNumbers = generateRandomNumbers();
+		 long timeStartedSQuickSort = System.currentTimeMillis();
+		 quickSort(quickSortNumbers, 0, quickSortNumbers.length - 1);
+		 System.out.println("Quick Sort last for: " +
+		 (System.currentTimeMillis() - timeStartedSQuickSort) + " ms");
+		
 	}
-
 
 	/**
 	 * Generates random numbers from 1 - 100,000
@@ -63,7 +76,8 @@ public class SortingAlgorithms {
 	 * repeatedly finding the minimum element (considering ascending order) from
 	 * unsorted part and putting it at the beginning.
 	 * 
-	 * @param arr - the int array to be sorted
+	 * @param arr
+	 *            - the int array to be sorted
 	 */
 	public static void selectionSort(int arr[]) {
 		int n = arr.length;
@@ -112,16 +126,17 @@ public class SortingAlgorithms {
 		}
 	}
 
-	
 	/**
-	 * ShellSort is mainly a variation of Insertion Sort. 
-	 * In insertion sort, we move elements only one position ahead. 
-	 * When an element has to be moved far ahead, many movements are involved. 
-	 * The idea of shellSort is to allow exchange of far items. 
-	 * In shellSort, we make the array h-sorted for a large value of h. 
-	 * We keep reducing the value of h until it becomes 1. 
-	 * An array is said to be h-sorted if all sublists of every h’th element is sorted.
-	 * @param arr - the array of integers to be sorted.
+	 * ShellSort is mainly a variation of Insertion Sort. In insertion sort, we
+	 * move elements only one position ahead. When an element has to be moved
+	 * far ahead, many movements are involved. The idea of shellSort is to allow
+	 * exchange of far items. In shellSort, we make the array h-sorted for a
+	 * large value of h. We keep reducing the value of h until it becomes 1. An
+	 * array is said to be h-sorted if all sublists of every h’th element is
+	 * sorted.
+	 * 
+	 * @param arr
+	 *            - the array of integers to be sorted.
 	 */
 	public static void shellSort(int[] arr) {
 		int n = arr.length;
@@ -152,89 +167,130 @@ public class SortingAlgorithms {
 	}
 
 	/**
-	 * Merge Sort is a Divide and Conquer algorithm. It divides input array in two halves, 
-	 * calls itself for the two halves and then merges the two sorted halves. 
-	 * The merge() function is used for merging two halves. 
-	 * The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] 
-	 * are sorted and merges the two sorted sub-arrays into one.
+	 * Merge Sort is a Divide and Conquer algorithm. It divides input array in
+	 * two halves, calls itself for the two halves and then merges the two
+	 * sorted halves.
+	 * 
+	 * @param arr
+	 *            - the input array to be sorted.
+	 */
+	public static void mergeSort(int arr[]) {
+		int arraySize = arr.length;
+
+		// Base case
+		if (arraySize < 2)
+			return; // the array is sorted
+
+		int mid = arraySize / 2;
+
+		int[] left = new int[mid];
+		int[] right = new int[arraySize - mid];
+
+		// copy the first half into left sub array
+		for (int i = 0; i < mid; i++) {
+			left[i] = arr[i];
+		}
+
+		// copy the second half into right sub array
+		for (int i = mid; i < arraySize; i++) {
+			right[i - mid] = arr[i];
+		}
+
+		// recursive calls
+		mergeSort(left);
+		mergeSort(right);
+
+		// Merge the two sorted subArrays
+		merge(arr, left, right);
+	}
+
+	/**
+	 * Helper method to merge the sorted halves
+	 * 
 	 * @param arr
 	 * @param left
-	 * @param mid
 	 * @param right
 	 */
-	// Merges two subarrays of arr[].
-    // First subarray is arr[left..mid]
-    // Second subarray is arr[m+1..right]
-    public static void merge(int arr[], int left, int mid, int right)
-    {
-        // Find sizes of two subarrays to be merged
-        int sizeLeft = mid - left + 1;
-        int sizeRight = right - mid;
- 
-        /* Create temp arrays */
-        int leftSubArray[] = new int [sizeLeft];
-        int rightSubArray[] = new int [sizeRight];
- 
-        /*Copy data to temp arrays*/
-        for (int i=0; i<sizeLeft; ++i)
-            leftSubArray[i] = arr[left + i];
-        for (int j=0; j<sizeRight; ++j)
-            rightSubArray[j] = arr[mid + 1 + j];
- 
- 
-        /* Merge the temp arrays */
-        // Initial indexes of first and second subarrays
-        int i = 0, j = 0;
- 
-        // Initial index of merged subarry array
-        int k = left;
-        while (i < sizeLeft && j < sizeRight)
-        {
-            if (leftSubArray[i] <= rightSubArray[j])
-            {
-                arr[k] = leftSubArray[i];
-                i++;
-            }
-            else
-            {
-                arr[k] = rightSubArray[j];
-                j++;
-            }
-            k++;
-        }
- 
-        /* Copy remaining elements of leftSubArray[] if any */
-        while (i < sizeLeft)
-        {
-            arr[k] = leftSubArray[i];
-            i++;
-            k++;
-        }
- 
-        /* Copy remaining elements of rightSubArray[] if any */
-        while (j < sizeRight)
-        {
-            arr[k] = rightSubArray[j];
-            j++;
-            k++;
-        }
-    }
- 
-    // Main function that sorts arr[left..right] using
-    // merge()
-    public static void mergeSort(int arr[], int left, int right)
-    {
-        if (left < right)
-        {
-            // Find the middle point
-            int mid = (left+right)/2;
- 
-            // Sort first and second halves
-            mergeSort(arr, left, mid);
-            mergeSort(arr , mid+1, right);
- 
-            // Merge the sorted halves
-            merge(arr, left, mid, right);
-        }
-    }
+	public static void merge(int[] arr, int[] left, int[] right) {
+		int sizeLeft = left.length;
+		int sizeRight = right.length;
+		int leftIndex = 0, rightIndex = 0, arrayIndex = 0;
+
+		while (leftIndex < sizeLeft && rightIndex < sizeRight) {
+			if (left[leftIndex] <= right[rightIndex]) {
+				arr[arrayIndex] = left[leftIndex];
+				leftIndex++;
+			} else {
+				arr[arrayIndex] = right[rightIndex];
+				rightIndex++;
+			}
+			arrayIndex++;
+		}
+
+		/* Copy remaining elements of leftSubArray[] if any */
+		while (leftIndex < sizeLeft) {
+			arr[arrayIndex] = left[leftIndex];
+			leftIndex++;
+			arrayIndex++;
+		}
+
+		/* Copy remaining elements of rightSubArray[] if any */
+		while (rightIndex < sizeRight) {
+			arr[arrayIndex] = right[rightIndex];
+			rightIndex++;
+			rightIndex++;
+		}
+
+	}
+
+	/**
+	 * QuickSort is a Divide and Conquer algorithm. 
+	 * It picks an element as pivot and partitions the given array around the picked pivot. 
+	 * @param arr
+	 * @param low
+	 * @param high
+	 */
+	public static void quickSort(int[] arr, int low, int high) {
+		if (low < high) {
+			int partitionIndex = partition(arr, low, high);
+
+			// Recursively sort elements before
+			// partition and after partition
+			quickSort(arr, low, partitionIndex - 1);
+			quickSort(arr, partitionIndex + 1, high);
+		}
+	}
+
+	/**
+	 * This function takes last element as pivot, places the pivot element at
+	 * its correct position in sorted array, and places all smaller (smaller
+	 * than pivot) to left of pivot and all greater elements to right of pivot
+	 * @param arr
+	 * @param low
+	 * @param high
+	 * @return
+	 */
+	public static int partition(int arr[], int low, int high) {
+		int pivot = arr[high];
+		int i = (low - 1); // index of smaller element
+		for (int j = low; j < high; j++) {
+			// If current element is smaller than or
+			// equal to pivot
+			if (arr[j] <= pivot) {
+				i++;
+
+				// swap arr[i] and arr[j]
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+
+		// swap arr[i+1] and arr[high] (or pivot)
+		int temp = arr[i + 1];
+		arr[i + 1] = arr[high];
+		arr[high] = temp;
+
+		return i + 1;
+	}
 }
