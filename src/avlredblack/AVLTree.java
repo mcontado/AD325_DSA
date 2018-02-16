@@ -212,30 +212,44 @@ public class AVLTree {
             node.height = 1 + Math.max(height(node.left), height(node.right));
         }
     }
- 
-    public static void main(String[] args) throws FileNotFoundException {
-        AVLTree tree = new AVLTree();
-        
-        File fileLoading = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT1.txt");
+    
+	public void loadData() throws FileNotFoundException {
+		File fileLoading = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT1.txt");
 		BufferedReader br = new BufferedReader(new FileReader(fileLoading));
-		
+
 		String st;
 		
 		try {
-			
+
 			long timeStartLoading = System.currentTimeMillis();
-			System.out.println("AVL TREE Time Initial Loading Starts at: " + timeStartLoading);
 			while ((st = br.readLine()) != null) {
-				tree.insert(Integer.parseInt(st));
-				
+				insert(Integer.parseInt(st));
 			}
-			System.out.println("Time Ends at: " + System.currentTimeMillis());
-			System.out.println("Loaded time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
+			System.out.println("Loaded total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void insertData() throws FileNotFoundException {
+		File fileLoading = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT2.txt");
+		BufferedReader br = new BufferedReader(new FileReader(fileLoading));
+
+		String st;
 		
+		try {
+
+			long timeStartLoading = System.currentTimeMillis();
+			while ((st = br.readLine()) != null) {
+				insert(Integer.parseInt(st));
+			}
+			System.out.println("Inserted total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteData() throws FileNotFoundException {
 		File fileInserting = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT3.txt");
 		BufferedReader brInsert = new BufferedReader(new FileReader(fileInserting));
 		
@@ -244,23 +258,21 @@ public class AVLTree {
 		try {
 			
 			long timeStartLoading = System.currentTimeMillis();
-			System.out.println("AVL TREE Time Inserting Starts at: " + timeStartLoading);
 			while ((stInsert = brInsert.readLine()) != null) {
-				tree.delete(Integer.parseInt(stInsert));
+				delete(Integer.parseInt(stInsert));
 				
 			}
-			System.out.println("Time Inserting Ends at: " + System.currentTimeMillis());
-			System.out.println("Inserting time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
+			System.out.println("Deleted total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
  
-//        System.out.println("Inserting values 1 to 10");
-//        for (int i = 1; i < 10; i++)
-//            tree.insert(i);
-// 
-//        System.out.print("Printing balance: ");
-//        tree.printBalance();
+    public static void main(String[] args) throws FileNotFoundException {
+        AVLTree tree = new AVLTree();
+        tree.loadData();
+        tree.insertData();
+        tree.deleteData();
     }
 }
