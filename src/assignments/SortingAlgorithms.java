@@ -17,7 +17,7 @@ public class SortingAlgorithms {
 	private static final int RANGE = 100000;
 
 	public static void main(String[] args) {
-		System.out.println("Sorting 100,000 random numbers...");
+		System.out.println("Sorting "  + RANGE + " random numbers...");
 		
 		// Selection Sort
 		 int[] selectionSortNumbers = generateRandomNumbers();
