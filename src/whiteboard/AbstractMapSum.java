@@ -4,6 +4,7 @@ import java.util.Map;
 
 public abstract class AbstractMapSum{
 	Map<String,Integer> map;
+	Map<String,Integer> storageMap;
 	
 	public abstract void insert(String key, int value);
 	
