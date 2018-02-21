@@ -225,7 +225,7 @@ public class AVLTree {
 			while ((st = br.readLine()) != null) {
 				insert(Integer.parseInt(st));
 			}
-			System.out.println("Loaded total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
+			System.out.println("Loading total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -243,7 +243,7 @@ public class AVLTree {
 			while ((st = br.readLine()) != null) {
 				insert(Integer.parseInt(st));
 			}
-			System.out.println("Inserted total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
+			System.out.println("Inserting total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -262,7 +262,7 @@ public class AVLTree {
 				delete(Integer.parseInt(stInsert));
 				
 			}
-			System.out.println("Deleted total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
+			System.out.println("Deleting total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -270,9 +270,11 @@ public class AVLTree {
 	}
  
     public static void main(String[] args) throws FileNotFoundException {
+    	System.out.println("AVL Tree Implementation");
         AVLTree tree = new AVLTree();
         tree.loadData();
         tree.insertData();
         tree.deleteData();
+        
     }
 }

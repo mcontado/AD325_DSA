@@ -314,7 +314,7 @@ public class RedBlackTree {
 				node = new Node(Integer.parseInt(st));
 				insert(node);
 			}
-			System.out.println("Loaded total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
+			System.out.println("Loading total time: " + (System.currentTimeMillis() - timeStartLoading) + " ms");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -331,7 +331,6 @@ public class RedBlackTree {
 			while ((stInsert = brInsert.readLine()) != null) {
 				node = new Node(Integer.parseInt(stInsert));
 				insert(node);
-				//System.out.println("Inserting: " + node.key);
 			}
 			
 			System.out.println("Inserting total time: " + (System.currentTimeMillis() - timeStartInserting) + " ms");
@@ -350,10 +349,9 @@ public class RedBlackTree {
 			while ((stDelete = brDelete.readLine()) != null) {
 				node = new Node(Integer.parseInt(stDelete));
 				delete(node);
-				//System.out.println("Deleting: " + node.key);
 			}
 
-			System.out.println("Deleted total time: " + (System.currentTimeMillis() - timeStartDeletion) + " ms");
+			System.out.println("Deleting total time: " + (System.currentTimeMillis() - timeStartDeletion) + " ms");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
