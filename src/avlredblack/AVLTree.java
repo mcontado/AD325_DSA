@@ -214,7 +214,7 @@ public class AVLTree {
     }
     
 	public void loadData() throws FileNotFoundException {
-		File fileLoading = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT1.txt");
+		File fileLoading = new File("src/avlredblack/SBT1.txt");
 		BufferedReader br = new BufferedReader(new FileReader(fileLoading));
 
 		String st;
@@ -232,7 +232,7 @@ public class AVLTree {
 	}
 	
 	public void insertData() throws FileNotFoundException {
-		File fileLoading = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT2.txt");
+		File fileLoading = new File("src/avlredblack/SBT2.txt");
 		BufferedReader br = new BufferedReader(new FileReader(fileLoading));
 
 		String st;
@@ -250,7 +250,7 @@ public class AVLTree {
 	}
 	
 	public void deleteData() throws FileNotFoundException {
-		File fileInserting = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT3.txt");
+		File fileInserting = new File("src/avlredblack/SBT3.txt");
 		BufferedReader brInsert = new BufferedReader(new FileReader(fileInserting));
 		
 		String stInsert;

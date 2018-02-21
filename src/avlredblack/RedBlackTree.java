@@ -302,7 +302,7 @@ public class RedBlackTree {
 	}
 
 	public void loadData() throws FileNotFoundException {
-		File fileLoading = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT1.txt");
+		File fileLoading = new File("src/avlredblack/SBT1.txt");
 		BufferedReader br = new BufferedReader(new FileReader(fileLoading));
 
 		String st;
@@ -322,7 +322,7 @@ public class RedBlackTree {
 	}
 
 	public void insertData() throws FileNotFoundException {
-		File fileInserting = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT2.txt");
+		File fileInserting = new File("src/avlredblack/SBT2.txt");
 		BufferedReader brInsert = new BufferedReader(new FileReader(fileInserting));
 		String stInsert;
 		Node node;
@@ -340,7 +340,7 @@ public class RedBlackTree {
 	}
 
 	public void deleteData() throws FileNotFoundException {
-		File fileDeleting = new File("/Users/tet/Documents/workspace/AD325_DSA/src/avlredblack/SBT3.txt");
+		File fileDeleting = new File("src/avlredblack/SBT3.txt");
 		BufferedReader brDelete = new BufferedReader(new FileReader(fileDeleting));
 		String stDelete;
 		Node node;
