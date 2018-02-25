@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class SymbolGraph {
 	private HashMap<String, Integer> airportCodeIndexMap; // string -> index
-	private String[] keys; // index -> string
+	private String[] keys; 									// index -> string
 	private static final String filePath = "src/graph/";
 	private Graph graph; // the underlying graph
 	private File fileLoading;
@@ -23,9 +23,12 @@ public class SymbolGraph {
 		// distinct strings with an index
 		buildMapOfAirportCodeToIndex();
 
-		// inverted index to get string keys in an array
-		invertIndex();
-
+		// inverted index to get string keys in an aray
+        keys = new String[airportCodeIndexMap.size()];
+        for (String name : airportCodeIndexMap.keySet()) {
+            keys[airportCodeIndexMap.get(name)] = name;
+        }
+        
 		// second pass builds the graph by connecting first vertex on each
 		// line to all others
 		buildGraph();
@@ -58,14 +61,6 @@ public class SymbolGraph {
 		}
 	}
 
-	public void invertIndex() {
-		// inverted index to get string keys in an array
-		keys = new String[airportCodeIndexMap.size()];
-		for (String name : airportCodeIndexMap.keySet()) {
-			keys[airportCodeIndexMap.get(name)] = name;
-		}
-	}
-
 	public void buildGraph() {
 		try {
 			bufferedReader = new BufferedReader(new FileReader(fileLoading));
@@ -77,12 +72,10 @@ public class SymbolGraph {
 				int v = airportCodeIndexMap.get(airportCodes[1]);
 				int w = airportCodeIndexMap.get(airportCodes[2]);
 				
-				graph.addEdge(v, w);
-				
-				
+				graph.addEdge(v, w);	
 			}
 			
-			System.out.println(graph.toString());
+			//graph.print();
 			bufferedReader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -114,6 +107,15 @@ public class SymbolGraph {
 			return true;
 		}
 		
+	}
+	
+	public void print() {
+		// print the array
+		for (int i = 0; i < graph.adj.length; i++) {
+			System.out.println(keys[i] + " => " 
+						+ graph.adj[i]);
+				
+		}
 	}
 	
 }

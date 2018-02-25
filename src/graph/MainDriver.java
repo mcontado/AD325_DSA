@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class MainDriver {
 	
 	public static void main(String[] args) throws IOException  {
-		SymbolGraph sg = new SymbolGraph("Routes.csv");
+		SymbolGraph sg = new SymbolGraph("sample.csv");
+		sg.print();
 		Scanner in = new Scanner(System.in);
 		
 		do {
