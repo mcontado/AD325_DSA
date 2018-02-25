@@ -1,5 +1,6 @@
 package graph;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -21,7 +22,12 @@ public class Graph {
 		adj[v].add(w);
 	}
 	
-	
+
+	@Override
+	public String toString() {
+		return "Graph : " + Arrays.toString(adj) + "]";
+	}
+
 	/**
 	 * Prints BFS traversal from a given source s
 	 * @param src
@@ -74,32 +80,5 @@ public class Graph {
 		// If BFS is complete without visited d
 		return false;
 	}
-	
-	// Driver method
-    public static void main(String args[])
-    {
-        // Create a graph given in the above diagram
-        Graph g = new Graph(4);
-        g.addEdge(0, 1);
-        g.addEdge(0, 2);
-        g.addEdge(1, 2);
-        g.addEdge(2, 0);
-        g.addEdge(2, 3);
-        g.addEdge(3, 3);
- 
-        int u = 1;
-        int v = 3;
-        if (g.isReachable(u, v))
-            System.out.println("There is a path from " + u +" to " + v);
-        else
-            System.out.println("There is no path from " + u +" to " + v);;
- 
-        u = 3;
-        v = 1;
-        if (g.isReachable(u, v))
-            System.out.println("There is a path from " + u +" to " + v);
-        else
-            System.out.println("There is no path from " + u +" to " + v);;
-    }
 	
 }
