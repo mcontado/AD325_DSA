@@ -6,7 +6,8 @@ import java.util.LinkedList;
 public class Graph {
 	private int V; // no. of vertices
 	protected LinkedList<Integer> adj[];
-
+	
+	
 	public Graph(int v) {
 		V = v;
 		adj = new LinkedList[V];
@@ -18,7 +19,10 @@ public class Graph {
 
 	// function to add an edge into the graph
 	public void addEdge(int v, int w) {
-		adj[v].add(w);
+		if (!adj[v].contains(w)) {
+			adj[v].add(w);
+		}
+		
 	}
 
 	public void print() {

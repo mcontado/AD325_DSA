@@ -112,8 +112,11 @@ public class SymbolGraph {
 	public void print() {
 		// print the array
 		for (int i = 0; i < graph.adj.length; i++) {
-			System.out.println(keys[i] + " => " 
-						+ graph.adj[i]);
+			System.out.print(keys[i] + " => ");
+			for(int intValue : graph.adj[i]) {
+				System.out.print(keys[intValue].concat(" "));
+			}
+			System.out.println();
 				
 		}
 	}
