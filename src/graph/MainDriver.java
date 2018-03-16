@@ -1,6 +1,7 @@
 package graph;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainDriver {
@@ -17,6 +18,7 @@ public class MainDriver {
 			
 			if (sg.possibleToReach(src, dest)) {
 				System.out.println("There is a path from " + src +" to " + dest);
+				System.out.println(sg.shortestPathList(src, dest));
 			} else {
 				System.out.println("There is no path from " + src +" to " + dest);
 			}
